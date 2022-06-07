@@ -5,9 +5,19 @@ import lesson1.enums.Color;
 
 public class Cat extends Animal implements Participant {
 
+    private boolean isOnDistance;
+    private int runDistance;
+    private int jumpHeight;
 
-    public Cat(String name, Color color, int age) {
+    private int swimDistance;
+
+    public Cat(String name, Color color, int age, int runDistance,int jumpHeight, int swimDistance) {
         super(name, color, age);
+        this.runDistance = runDistance;
+        this.jumpHeight = jumpHeight;
+        this.swimDistance = swimDistance;
+        isOnDistance = true;
+
     }
 
     public Cat(String name, Color color) {
@@ -16,26 +26,46 @@ public class Cat extends Animal implements Participant {
 
     @Override
     public void voice() {
-        System.out.println("ћ€у - м€у");
+        System.out.println("ћ€у - м€у ");
     }
 
     @Override
     public boolean isOnDistance() {
-        return false;
+        return isOnDistance;
     }
 
     @Override
     public void run(int distance) {
+        if(!isOnDistance) {
+            return;
+        }
+            if (distance > runDistance) {
+                isOnDistance = false;
+            }
 
+        System.out.printf(" от %s пробежал кросс длинной %d%n", getName(), distance);
     }
 
     @Override
     public void jump(int height) {
+        if(!isOnDistance) {
+            return;
+        }
+            if (height > jumpHeight) {
+                isOnDistance = false;
+            }
 
-    }
+            System.out.printf(" от %s пргнул на высотой %d%n", getName(), height);
+        }
 
     @Override
     public void swim(int distance) {
+        System.out.println(" от не умеет плавать, значит плыть он не будет!");
+        isOnDistance = false;
+    }
 
+    @Override
+    public void getResult() {
+        System.out.printf(" от %s %s прошЄл полосу преп€дствий %n",getName(), isOnDistance ? "" : "не");
     }
 }

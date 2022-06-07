@@ -1,15 +1,18 @@
 package lesson1;
 
-import lesson1.Animal.Animal;
-
 public class Team {
-    private Animal[] participants;
+    private Participant[] participants;
 
-    public Team(Animal... participants){
+    public Team(Participant... participants){
         this.participants = participants;
     }
 
     public Participant[] getParticipants() {
         return participants;
+    }
+    public void getResults(){
+        for(Participant participant : participants){
+            participant.getResult();
+        }
     }
 }
